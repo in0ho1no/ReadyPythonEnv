@@ -16,14 +16,10 @@ export_on_save:
 
 - [template markdown](#template-markdown)
   - [凡例](#凡例)
-  - [章立て](#章立て)
   - [pythonインストール](#pythonインストール)
     - [Pythonのバージョンについて](#pythonのバージョンについて)
-      - [項](#項)
-  - [画像](#画像)
-    - [画像2](#画像2)
-    - [画像3](#画像3)
-    - [PlantUML](#plantuml)
+    - [インストーラの入手](#インストーラの入手)
+  - [章立て](#章立て)
 
 <!-- /code_chunk_output -->
 
@@ -55,11 +51,63 @@ export_on_save:
 コマンドやコードのサンプル等
 :::
 
+## pythonインストール
+
+以下順序でPythonのインストールを進める。  
+
+1. 利用するバージョンについて
+1. インストーラの入手
+1. インストーラの実行
+1. インストールできたことの確認
+
+### Pythonのバージョンについて
+
+Pythonには大まかに2.n系と3.n系が存在する。  
+それぞれの主な特徴は下図の通り。  
+
+![Ver](./img/01Python/01.drawio.png)
+
+どちらを利用することもありうるが、本書では最新のPython環境を利用する。  
+
+:::info
+Pythonには派生形が多数存在する。  
+・Circuit Python  
+・Micro Python  
+・Iron Python  
+これらと区別するためにPython.orgからダウンロードできるPythonをCPythonと呼称することもある。
+:::
+
+:::note
+筆者が現在利用しているメイン機では2.7, 3.7～3.11をインストールしている。  
+このため、利用するバージョンを使い分ける手段が必要になる。  
+バージョンを使い分ける手段は後述する。  
+:::
+
+### インストーラの入手
+
+以下Python.orgのページからインストーラをダウンロードする。  
+[https://www.python.org/](https://www.python.org/)
+
+Downloadsをクリックする。
+
+![画像jpg](./img/01Python/10.png){.image_w900}
+
+トップには最新バージョンが表示されるハズなのでクリックする。
+
+![画像jpg](./img/01Python/11.png){.image_w900}
+
+ブラウザのダウンローダに従って、名前を付けて保存する。
+
+![画像jpg](./img/01Python/12.png){.image_w900}
+
+適当なフォルダへ保存する。  
+下図は一例として「ダウンロード」フォルダへ、そのままのファイル名で保存している。  
+
+![画像jpg](./img/01Python/13.png){.image_w900}
+
 ## 章立て
 
 pythonインストール
-  バージョンの話
-  CS+は2系
 
 VSCodeインストール
 
@@ -86,65 +134,3 @@ markdownによる文書を作成したい場合は、この環境を利用する
 
 - 推奨事項に追加してある拡張機能を有効化すること。
 - 上記有効化してあれば、目次も自動更新される。
-
-## pythonインストール
-
-まずはPythonをインストールする。  
-
-### Pythonのバージョンについて
-
-Pythonには大まかに2.n系と3.n系が存在する。  
-それぞれの主な特徴は下図の通り。  
-
-![drawio](./img/01Python/01.drawio.png)
-
-どちらを利用することもありうるが、本書では最新のPython環境を利用する。  
-
-:::info
-Pythonには派生形が多数存在する。  
-・Circuit Python  
-・Micro Python  
-・Iron Python  
-これらと区別するために標準のPythonをCPythonと呼称することもある。
-:::
-
-:::note
-筆者が現在利用しているメイン機では2.7, 3.7～3.11をインストールしている。  
-このため、利用するバージョンを使い分ける手段が必要になる。  
-バージョンを使い分ける手段は後述する。  
-:::
-
-#### 項
-
-## 画像
-
-![画像jpg](./img/AdobeStock_489911657.jpeg){.image_w300}
-
-### 画像2
-
-![画像png](./img/AdobeStock_491863380.png)
-
-pngとjpgが張り付けられることは確認した。
-
-### 画像3
-
-複数ページを作成しても、参照されるのはページ1のみ。
-
-drawio側を更新してもmarkdown側には即反映ではない？  
-⇒ プレビューに反映されないだけみたい。html出力には反映された。  
-⇒⇒ MPEを利用しているなら右上から更新すればいい  
-
-### PlantUML
-
-```plantuml
-@startuml
-hide empty description
-[*] --> State1
-State1 --> [*]
-State1 : this is a string
-State1 : this is another string
-
-State1 -> State2
-State2 --> [*]
-@enduml
-```
