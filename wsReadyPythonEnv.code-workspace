@@ -2,7 +2,7 @@
     "folders": [
         {
             "path": "."
-        }
+		}
     ],
 	"settings": {
 		// ミニマップを非表示にする
@@ -36,5 +36,6 @@
 		"markdown-preview-enhanced.mathRenderingOption": "MathJax",
 		"markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
 		"markdown-preview-enhanced.plantumlJarPath": "C:/Users/${env:USERNAME}/.vscode/extensions/jebbs.plantuml-2.18.1/plantuml.jar",
+		"markdown-preview-enhanced.enableScriptExecution": true
 	}
 }
