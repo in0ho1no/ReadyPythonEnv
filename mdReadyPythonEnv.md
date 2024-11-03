@@ -27,8 +27,10 @@ export_on_save:
     - [VSCodeインストーラの実行](#vscodeインストーラの実行)
   - [VSCodeでのPython開発](#vscodeでのpython開発)
     - [VSCodeに関する補足](#vscodeに関する補足)
-      - [ワークスペースについて](#ワークスペースについて)
+      - [拡張機能とワークスペースについて](#拡張機能とワークスペースについて)
       - [日本語化](#日本語化)
+    - [シンプルな作業環境の作成](#シンプルな作業環境の作成)
+      - [ワークスペース作成](#ワークスペース作成)
   - [章立て](#章立て)
 
 <!-- /code_chunk_output -->
@@ -121,9 +123,9 @@ Downloadsをクリックする。
 [https://docs.python.org/ja/3/using/windows.html](https://docs.python.org/ja/3/using/windows.html)
 
 :::note
-Pythonは敷居の低さゆえに粗製乱造されたネット記事が多いうえ、昨今は生成AIの影響で粗悪さに拍車がかかっている。  
+Pythonは敷居の低さ故に粗製乱造されたネット記事が多いうえ、昨今は生成AIの影響で粗悪さに拍車がかかっている。  
 困ったことがあれば最初に公式ドキュメントを参照すること。  
-ただし、公式ドキュメントは厳密さゆえに分かり難いこともあるので、ネット記事と行ったり来たりしながら正解を考えることも多分にありうる。  
+ただし、公式ドキュメントは厳密すぎることで逆に分かり難いことがあるので、ネット記事と行ったり来たりしながら正解を考えることも多分にありうる。  
 :::
 
 ダウンロードしたインストーラをダブルクリックする。
@@ -336,7 +338,7 @@ Download for Windowsをクリックする。
 
 ### VSCodeに関する補足
 
-#### ワークスペースについて
+#### 拡張機能とワークスペースについて
 
 VSCodeはテキストエディタである。  
 だが、単なるテキストエディタではない。  
@@ -368,16 +370,16 @@ VSCodeはデフォルトで英語なので、日本語化しておく。
 
 ![画像jpg](./img/03VSCode+Python/00.png){.image_w900}
 
-一番上に表示される
-「Japanese Language Pack for Visual Studio Code」の「install」ボタンをクリックする。
+下図中一番上の「Japanese Language Pack for Visual Studio Code」が今回インストールしたい拡張機能である。  
+表示されている「install」ボタンをクリックする。
 
 ![画像jpg](./img/03VSCode+Python/01.png){.image_w900}
 
-数秒してインストールに完了すると、下図のダイアログが表示されるので「Change Language and Restart」をクリックする。  
+数秒してインストールに完了すると、ウィンドウ右下にダイアログが表示されるので「Change Language and Restart」をクリックする。  
 
 ![画像jpg](./img/03VSCode+Python/02.png){.image_w900}
 
-もしもダイアログが閉じてしまった場合は、「Ctrl + Shift + Pack」のショートカットキーで表示される検索窓にて「Configure Display」と入力して表示される「Configure Display Language」をクリックする。  
+もしもダイアログが閉じてしまった場合は、「Ctrl + Shift + P」のショートカットキーを押下することで表示される検索窓(コマンドパレット)にて「Configure Display」と入力して表示される「Configure Display Language」をクリックする。  
 
 ![画像jpg](./img/03VSCode+Python/03.png){.image_w900}
 
@@ -393,13 +395,72 @@ VSCodeはデフォルトで英語なので、日本語化しておく。
 
 ![画像jpg](./img/03VSCode+Python/06.png){.image_w900}
 
+### シンプルな作業環境の作成
+
+#### ワークスペース作成
+
+今回は事例として「sample-python」というフォルダを「ドキュメント」直下に作成しておく。  
+
+![画像jpg](./img/03VSCode+Python/10.png){.image_w900}
+
+Windowsキーを押下してスタートメニューを表示し、「VSCode」と入力する。  
+インストール済みのVSCodeが表示されるので、「新しいウィンドウ」をクリックする。  
+
+![画像jpg](./img/03VSCode+Python/11.png){.image_w900}
+
+起動したVSCodeにて、「ファイル」-「フォルダーを開く」をクリックする。  
+
+![画像jpg](./img/03VSCode+Python/12.png){.image_w900}
+
+先述の手順で作成済みの「sample-python」フォルダを選択する。
+
+![画像jpg](./img/03VSCode+Python/13.png){.image_w900}
+
+フォルダを信頼するか否か問われるので、「はい、作成者を信頼します」をクリックする。
+
+![画像jpg](./img/03VSCode+Python/14.png){.image_w900}
+
+:::caution
+不用意に信頼しないこと。  
+自身が作成したフォルダ・ワークスペースや身内が作成したものは問題ないが、Githubなどインターネット上から入手した環境は要注意!!  
+VSCodeは高機能故に悪意あるユーザにも力を与えてしまう。  
+そもそも良く知らない環境をダウンロードすることも避けるべきであり、仮にダウンロードしても安易に信頼してはならない。
+:::
+
+以下のように開いたフォルダが表示されていれば成功である。  
+現時点では「sample-python」フォルダの中身が空なので、エクスプローラータブ内には何も表示されていない。  
+
+![画像jpg](./img/03VSCode+Python/15.png){.image_w900}
+
+続いて、開いたフォルダをワークスペースとして保存する。  
+
+![画像jpg](./img/03VSCode+Python/16.png){.image_w900}
+
+「sample-python」フォルダ内に、デフォルト(sample-python.code-workspace)のまま保存する。
+
+![画像jpg](./img/03VSCode+Python/17.png){.image_w900}
+
+エクスプローラータブ内に「sample-python.code-workspace」が表示されることを確認したら、一度VSCodeを閉じる。  
+
+![画像jpg](./img/03VSCode+Python/18.png){.image_w900}
+
+最後に、ワークスペースからVSCodeを起動する。  
+先の手順ではVSCodeを起動してから対象のフォルダを指定したが、今度は直接起動する形になる。  
+「sample-python」フォルダ内に、作成した「sample-python.code-workspace」をダブルクリックする。
+
+![画像jpg](./img/03VSCode+Python/19.png){.image_w900}
+
+以下のようにしてVSCodeを起動できれば、本節は終了である。  
+このワークスペースは信頼済みなので、今回の起動では信頼する／しないの確認は表示されない。  
+
+![画像jpg](./img/03VSCode+Python/20.png){.image_w900}
+
+sample-python.code-workspace
+
 ## 章立て
 
 VSCode+pythonの環境構築
   python debuggerを利用すること
-
-  VSIXからとってくることもできるが、スペルミスには要注意  
-  基本的に許可リストにあるライブラリのみ利用すること  
 
 単純なスクリプトを実行して、挙動確認
 
@@ -413,8 +474,3 @@ JupyterNotebook環境の作成
   基本的に許可リストにあるライブラリのみ利用すること  
 
 セルで実行
-
-markdownによる文書を作成したい場合は、この環境を利用する。  
-
-- 推奨事項に追加してある拡張機能を有効化すること。
-- 上記有効化してあれば、目次も自動更新される。
