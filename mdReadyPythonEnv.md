@@ -31,6 +31,7 @@ export_on_save:
       - [日本語化](#日本語化)
     - [シンプルな作業環境の作成](#シンプルな作業環境の作成)
       - [ワークスペース作成](#ワークスペース作成)
+    - [VSCode上でPython開発(拡張機能非利用)](#vscode上でpython開発拡張機能非利用)
   - [章立て](#章立て)
 
 <!-- /code_chunk_output -->
@@ -226,7 +227,9 @@ print('Hello World!')
 実行中は変数も保持するので、以下のような演算を行うことも可能である。  
 
 :::sample
-print('Hello World!')
+a = 1 + 2  
+b = 10 + 20  
+print(a + b)
 :::
 
 ![画像jpg](./img/01Python/34.png){.image_w900}
@@ -455,7 +458,56 @@ VSCodeは高機能故に悪意あるユーザにも力を与えてしまう。
 
 ![画像jpg](./img/03VSCode+Python/20.png){.image_w900}
 
-sample-python.code-workspace
+### VSCode上でPython開発(拡張機能非利用)
+
+まず拡張機能を利用しない場合の、実行手順を紹介する。  
+
+「sample-python.code-workspace」をダブルクリックしてVSCodeを起動しておく。  
+Pythonスクリプトファイルを作成するために、エクスプローラータブ内の＋ボタンをクリックする。  
+ファイル名は任意で、拡張子は「.py」とすること。  
+下図の例では「main.py」というファイルを新規作成している。  
+
+![画像jpg](./img/03VSCode+Python/30.png){.image_w900}
+
+新規作成に成功すると、そのまま該当ファイルが開かれる。  
+※ この時点では画面右下のダイアログは操作しない。邪魔なら「×」ボタンでダイアログを閉じてもいい。  
+
+![画像jpg](./img/03VSCode+Python/31.png){.image_w900}
+
+そのまま該当ファイルに以下1文を追記しておく。  
+
+:::sample
+print('Hello World!')
+:::
+
+![画像jpg](./img/03VSCode+Python/32.png){.image_w900}
+
+:::note
+未保存状態では、ファイル名の右横に●が表示されて「main.py ●」という表示になる。  
+VSCodeの閉じ方によっては未保存状態のまま終了・再起動できる場合もあるが、基本的にVSCodeを閉じる前に保存することを推奨する。  
+:::
+
+ターミナルを開くため、「Ctrl + @」のショートカットキーを押下する。  
+ウィンドウ下部にターミナルが表示され、カレントディレクトリが開かれた状態となる。  
+
+![画像jpg](./img/03VSCode+Python/33.png){.image_w900}
+
+そのままターミナルへ以下コマンドを入力する。  
+
+:::sample
+python main.py
+:::
+
+実行結果として「Hello World!」と表示されれば成功である。  
+
+![画像jpg](./img/03VSCode+Python/34.png){.image_w900}
+
+コマンドの意味は以下の通り。  
+
+- python: Pythonインタープリタ（python.exe）を起動
+- main.py: 実行したいPythonスクリプトファイルの名前を指定
+
+この手順により、main.pyという名前のPythonスクリプトを実行したことを意味する。  
 
 ## 章立て
 
