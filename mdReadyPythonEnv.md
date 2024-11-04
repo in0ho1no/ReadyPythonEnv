@@ -47,6 +47,10 @@ export_on_save:
       - [仮想環境の作成](#仮想環境の作成)
       - [仮想環境にライブラリ追加](#仮想環境にライブラリ追加)
       - [インストールしたライブラリ確認](#インストールしたライブラリ確認)
+  - [VSCodeでのPython開発 - 仮想環境利用](#vscodeでのpython開発---仮想環境利用)
+    - [Python仮想環境へJupyterをインストール](#python仮想環境へjupyterをインストール)
+    - [VSCodeへ「Jupyter」を追加](#vscodeへjupyterを追加)
+    - [JupyterによるPythonスクリプトの実行](#jupyterによるpythonスクリプトの実行)
 
 <!-- /code_chunk_output -->
 
@@ -915,3 +919,118 @@ pip list
 
 - 仮想環境内のライブラリが、「pip」「PyYAML」の2つとなっている
 - ホスト環境内のライブラリが、「pip」の1つとなっている
+
+## VSCodeでのPython開発 - 仮想環境利用
+
+最後にVSCode + Python環境にて、Jupyterの利用環境構築手順を示す。  
+VSCode上でJupyterを利用するためには2つの準備が必要であるため、順番に示す。  
+
+- PythonのライブラリとしてJupyterをインストールする
+- VSCodeの拡張機能として「Jupyter」を追加する
+
+:::info
+Jupyterとは。  
+ブラウザ上で動作するJupyter Notebookおよび、VSCode向け拡張機能の「Jupyter」を指す。  
+Jupyter Notebookはブラウザ上で利用できる利便性を備えるのに対し、  
+拡張機能の「Jupyter」はVSCodeの機能を利用できる利便性を備える。  
+いずれもセル単位でPythonスクリプトを実行したり、マークダウン形式でテキスト入力したりでき、メモやグラフを同じ画面上で確認できるノート形式のインターフェースを提供する。  
+:::
+
+### Python仮想環境へJupyterをインストール
+
+「sample-python.code-workspace」をダブルクリックしてVSCodeを起動しておく。  
+さらに「Ctrl + @」のショートカットキーを押下して、ターミナルも起動させておく。  
+
+![画像jpg](./img/05Jupyter/01.png){.image_w900}
+
+Python仮想環境が有効化(アクティブ化)されていることを確認したうえで、以下コマンドを実行する。  
+
+:::sample
+pip install jupyter
+:::
+
+![画像jpg](./img/05Jupyter/02.png){.image_w900}
+
+Jupyterは多数のライブラリに依存しているため、全てのライブラリをインストールするのに時間を要する。  
+最終的に下図のように多数のライブラリ名が表示された状態で数分待機した後、ユーザ操作を待ち受ける状態(カーソルの点滅状態)になればインストール完了である。  
+
+![画像jpg](./img/05Jupyter/03.png){.image_w900}
+
+### VSCodeへ「Jupyter」を追加
+
+「Python」拡張機能を追加したのと同様に、拡張機能のタブを開く。  
+検索窓に「jupyter」と入力するだけで複数の拡張機能がヒットする。  
+
+![画像jpg](./img/05Jupyter/04.png){.image_w900}
+
+下図中一番上に表示されている「jupyter」をクリックし、パブリッシャがMicrosoftであることを確認したうえで、「インストール」ボタンをクリックする。  
+
+![画像jpg](./img/05Jupyter/05.png){.image_w900}
+
+数秒待つとインストールが完了する。  
+
+![画像jpg](./img/05Jupyter/06.png){.image_w900}
+
+ワークスペース単位で有効にしたいため、「無効にする」ボタンをクリックする。
+
+![画像jpg](./img/05Jupyter/07.png){.image_w900}
+
+「有効にする」ボタンの右隣りに表示される「▽」ボタンをクリックして表示される「有効にする(ワークスペース)」ボタンをクリックする。
+
+![画像jpg](./img/05Jupyter/08.png){.image_w900}
+
+以下表示に切り替われば、「sample-python」ワークスペースに限定して「Jupyter」拡張機能の有効化に成功である。  
+
+![画像jpg](./img/05Jupyter/09.png){.image_w900}
+
+:::Info
+連動して以下拡張機能もインストールされる。  
+・「Jupyter Cell Tags」  
+・「Jupyter Keymap」  
+・「Jupyter Notebook  
+・「Jupyter Slide Show」  
+:::
+
+### JupyterによるPythonスクリプトの実行
+
+Jupyter用のファイルを作成するために、エクスプローラータブ内の＋ボタンをクリックする。  
+ファイル名は任意で、拡張子は「.ipynb」とすること。  
+下図の例では「sample.ipynb」というファイルを新規作成している。  
+
+![画像jpg](./img/05Jupyter/10.png){.image_w900}
+
+新規作成に成功すると、作成したファイルが開かれる。
+
+![画像jpg](./img/05Jupyter/11.png){.image_w900}
+
+「+コード」ボタンをクリックし、以下Pythonスクリプトを入力する。  
+
+:::sample
+print('Hello World!')
+:::
+
+![画像jpg](./img/05Jupyter/12.png){.image_w900}
+
+セルの左横に表示される「▶」ボタンをクリックする。  
+
+![画像jpg](./img/05Jupyter/13.png){.image_w900}
+
+セル内のスクリプトを実行する環境を問われるので、「Python環境」をクリックする。  
+
+![画像jpg](./img/05Jupyter/14.png){.image_w900}
+
+本書内で作成した仮想環境である「.venv(Python 3.13.0)」をクリックする。  
+
+![画像jpg](./img/05Jupyter/15.png){.image_w900}
+
+改めてセルの左横に表示される「▶」ボタンをクリックすると、スクリプトの実行結果として「Hello World!」が出力される。
+
+![画像jpg](./img/05Jupyter/16.png){.image_w900}
+
+更にセルを追加して、計算を行うことも可能。  
+
+![画像jpg](./img/05Jupyter/17.png){.image_w900}
+
+各セルは名前空間を共有しているので、一つ前のセルで代入した変数値を保持したまま演算することも可能である。  
+
+![画像jpg](./img/05Jupyter/18.png){.image_w900}
