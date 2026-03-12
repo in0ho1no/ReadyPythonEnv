@@ -52,6 +52,13 @@ export_on_save:
     - [Python仮想環境へJupyterをインストール](#python仮想環境へjupyterをインストール)
     - [VSCodeへ「Jupyter」を追加](#vscodeへjupyterを追加)
     - [JupyterによるPythonスクリプトの実行](#jupyterによるpythonスクリプトの実行)
+  - [uvによる環境作成](#uvによる環境作成)
+    - [uvとは](#uvとは)
+    - [uvのインストール](#uvのインストール)
+    - [uvのインストール確認](#uvのインストール確認)
+    - [uvの更新](#uvの更新)
+    - [uvによるpythonのインストール](#uvによるpythonのインストール)
+  - [uvによる仮想環境の同期](#uvによる仮想環境の同期)
   - [終わり](#終わり)
 
 <!-- /code_chunk_output -->
@@ -1077,6 +1084,121 @@ print('Hello World!')
 各セルは名前空間を共有しているので、一つ前のセルで代入した変数値を保持したまま演算することも可能である。  
 
 ![画像jpg](./img/05Jupyter/18.png){.image_w900}
+
+## uvによる環境作成
+
+### uvとは
+
+uvとはRustで記述された、パッケージ管理・仮想環境・Pythonバージョン管理を統合した高速ツールである。  
+pip・pipenv・poetryと変遷を経てきたPythonの環境管理ツールだが、2026年現在はuvが事実上の標準となっている。  
+pythonのライブラリ管理も便利だが、python本体も扱うことができ、他人との環境共有が飛躍的に便利になったのである。  
+
+### uvのインストール
+
+公式のドキュメントが豊富なのでそれを見れば問題ないが、本書では必須な部分を抜粋して記載する。  
+[公式インストールガイド](https://docs.astral.sh/uv/getting-started/installation/)
+の内容に従ってuvをインストールする。
+
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+本書においては以下バージョンを指定してインストールする。  
+
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.10.9/install.ps1 | iex"
+
+なお、バージョン固定した方が安全なケースは多い。  
+バージョン由来による挙動の違いが防げることもあるうえ、セキュリティリスクも抑えられるのである。  
+その一方で、特定バージョンに脆弱性が存在した場合、そのバージョンを固定で利用すること自体がリスクになってしまう。  
+配信サーバが乗っ取られた場合、バージョン固定していたとしてもセキュリティリスクは同じである。  
+
+本書はuvおよびpython環境構築を学ぶことが目的である。  
+執筆時点で動作確認済みのバージョンを固定することで、読者が本書の手順を再現しやすくする。  
+なお、脆弱性が発見された場合は公式リリースノートを参照のうえバージョンを更新することを推奨する。  
+
+### uvのインストール確認
+
+インストールに成功したかどうかを確認しておく。  
+環境変数への追加を反映させるため、まずはターミナルを再起動させる。  
+その後、以下コマンドによってバージョンを確認する。
+
+    uv self version
+
+以下のような表示が得られれば問題なくインストールできたことになる。  
+
+    PS C:\Users\<username>\Desktop> uv self version
+    uv 0.10.9 (f675560f3 2026-03-06)
+    PS C:\Users\<username>\Desktop>
+
+### uvの更新
+
+以下コマンドによってuv自身を更新することができる。  
+脆弱性の修正や新機能の利用が必要になった場合は以下を実行する。  
+
+    uv self update
+
+以下のような表示が得られれば問題なく更新できたことになる。  
+
+    PS C:\Users\<username>\Desktop> uv self update
+    info: Checking for updates...
+    success: Upgraded uv from v0.9.20 to v0.10.9! https://github.com/astral-sh/uv/releases/tag/0.10.9
+    PS C:\Users\<username>\Desktop>
+
+:::note
+なお、本書ではバージョンを固定してインストールしているため、
+通常この手順は不要である。
+:::
+
+### uvによるpythonのインストール
+
+前述した通り、uvではpython本体も管理できる。  
+その一例として、以下コマンドによりpythonをインストールする
+
+    uv python install 3.10
+
+以下のような表示が得られれば問題なくインストールできたことになる。  
+
+    PS C:\Users\<username>\Desktop> uv python install 3.10
+    Installed Python 3.10.20 in 7.68s
+    + cpython-3.10.20-windows-x86_64-none (python3.10.exe)
+    PS C:\Users\<username>\Desktop>
+
+以下でインストール結果も確認しておく。
+
+    PS C:\Users\<username>\Desktop> uv python list
+    cpython-3.15.0a6-windows-x86_64-none                 <download available>
+    cpython-3.15.0a6+freethreaded-windows-x86_64-none    <download available>
+    cpython-3.14.3-windows-x86_64-none                   <download available>
+    cpython-3.14.3+freethreaded-windows-x86_64-none      <download available>
+    cpython-3.13.12-windows-x86_64-none                  <download available>
+    cpython-3.13.12+freethreaded-windows-x86_64-none     <download available>
+    cpython-3.12.13-windows-x86_64-none                  <download available>
+    cpython-3.11.15-windows-x86_64-none                  <download available>
+    cpython-3.10.20-windows-x86_64-none                  AppData\Roaming\uv\python\cpython-3.10.20-windows-x86_64-none\python.exe
+    cpython-3.9.25-windows-x86_64-none                   <download available>
+    cpython-3.8.20-windows-x86_64-none                   <download available>
+    pypy-3.11.13-windows-x86_64-none                     <download available>
+    pypy-3.10.16-windows-x86_64-none                     <download available>
+    pypy-3.9.19-windows-x86_64-none                      <download available>
+    pypy-3.8.16-windows-x86_64-none                      <download available>
+    graalpy-3.12.0-windows-x86_64-none                   <download available>
+    graalpy-3.11.0-windows-x86_64-none                   <download available>
+    graalpy-3.10.0-windows-x86_64-none                   <download available>
+    PS C:\Users\<username>\Desktop>
+
+## uvによる仮想環境の同期
+
+以下で作成済みの環境を展開できる。  
+
+    uv sync
+
+`pyproject.toml`に[project]セクションが無ければ追加が必要。  
+
+以下で任意のライブラリを追加できる。  
+
+    uv add <ライブラリ名>
+
+手動で仮想環境から実行する場合以下コマンドを実行する。
+
+    uv run <実行したいスクリプト名.py>
 
 ## 終わり
 
