@@ -17,6 +17,7 @@ export_on_save:
 - [VSCode + Python環境構築](#vscode--python環境構築)
   - [凡例](#凡例)
   - [本書の目的](#本書の目的)
+  - [本書の環境](#本書の環境)
   - [Python - インストール](#python---インストール)
     - [Python - バージョン](#python---バージョン)
     - [Python - インストーラの入手](#python---インストーラの入手)
@@ -111,6 +112,14 @@ Pythonは以下のような要素を備えている。
 ・動的型付け  
 ・スコープ範囲はインデントで表すのみ  
 :::
+
+## 本書の環境
+
+- OS: Windows 11 Home 24H2
+- VSCode: 1.95.1
+- Python: 3.13.0
+- Python拡張機能: 2024.18.0
+- Jupyter拡張機能: 2024.10.0
 
 ## Python - インストール
 
