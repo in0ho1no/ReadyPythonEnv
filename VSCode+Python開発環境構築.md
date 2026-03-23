@@ -35,6 +35,7 @@ export_on_save:
       - [ワークスペース作成](#ワークスペース作成)
       - [ワークスペースを開く](#ワークスペースを開く)
   - [VSCodeでのPython開発 - 基本](#vscodeでのpython開発---基本)
+    - [Pythonスクリプト実行 - 事前準備](#pythonスクリプト実行---事前準備)
     - [Pythonスクリプト実行 - 拡張機能を利用しない](#pythonスクリプト実行---拡張機能を利用しない)
     - [Pythonスクリプト実行 - 拡張機能を利用する](#pythonスクリプト実行---拡張機能を利用する)
       - [拡張機能のインストール - ユーザ単位](#拡張機能のインストール---ユーザ単位)
@@ -532,6 +533,45 @@ VSCodeは高機能故に悪意あるユーザにも力を与えてしまう。
 :::
 
 ## VSCodeでのPython開発 - 基本
+
+### Pythonスクリプト実行 - 事前準備
+
+VSCode上のターミナルにてPowerShellを利用してPythonスクリプトを実行することになる。  
+その際、仮想環境を有効化しようとすると、PowerShellのセキュリティポリシーによりスクリプトの実行がブロックされることがある。  
+
+これは、PowerShellが悪意あるスクリプトの実行を防ぐため、デフォルトでスクリプト実行を制限しているためである。
+本書では、仮想環境を有効化できるようにするため、実行ポリシーを緩和する。
+まず初期設定と変更したい設定を示す。
+
+MS公式ページの
+[PowerShell 実行ポリシー](https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.6#powershell-execution-policies)
+より引用
+
+分類 | パラメータ | 説明
+--- | --- | ---
+初期値 | Restricted | 個々のコマンドを許可するが、スクリプトは許可しない。書式設定ファイルと構成ファイル (.ps1xml)、モジュール スクリプト ファイル (.psm1)、PowerShell プロファイル (.ps1) など、すべてのスクリプト ファイルの実行を禁止する。
+変更したい値 | RemoteSigned | スクリプトを実行できる。インターネットからダウンロードされるスクリプトと構成ファイルに、信頼できる発行元からのデジタル署名が必要となる。ローカルコンピューターに書き込まれ、インターネットからダウンロードされないスクリプトの場合は署名無しで実行可能とする。
+
+:::note
+ほとんどの場合で初期値はRestrictedですが、環境によって異なる場合があります
+:::
+
+設定変更するためのコマンドを以下に示す。
+
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+このコマンドをVSCode上のターミナル(PowerShell)で実行することにより、現在のユーザに限定してポリシーをRemoteSignedへ変更することができる。
+
+以下コマンドを実行して`RemoteSigned`と表示されれば、本設定は完了である。
+
+    Get-ExecutionPolicy -Scope CurrentUser
+
+:::info
+この問題は`.\.venv\Scripts\Activate.ps1`を実行する場合に発生する。  
+`uv run`を用いるなら本手順を踏まなくても問題ないと思われる。  
+しかし、ネット上の記事を参考にスクリプトを実行したいケースではuvを利用しないこともあると想定される。  
+記憶の片隅にでもひっかけておくことができるよう、本手順を掲載しておく。
+:::
 
 ### Pythonスクリプト実行 - 拡張機能を利用しない
 
